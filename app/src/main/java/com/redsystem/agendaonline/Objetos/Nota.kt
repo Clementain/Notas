@@ -1,86 +1,78 @@
-package com.redsystem.agendaonline.Objetos;
+package com.redsystem.agendaonline.Objetos
 
-public class Nota {
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.redsystem.agendaonline.R
+import android.widget.EditText
+import android.widget.TextView
+import android.app.ProgressDialog
+import com.google.firebase.auth.FirebaseAuth
+import android.content.Intent
+import com.redsystem.agendaonline.Registro
+import android.widget.Toast
+import android.text.TextUtils
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseUser
+import com.redsystem.agendaonline.MenuPrincipal
+import com.google.android.gms.tasks.OnFailureListener
+import androidx.recyclerview.widget.RecyclerView
+import com.redsystem.agendaonline.ViewHolder.ViewHolder_Nota.ClickListener
+import android.view.View.OnLongClickListener
+import com.google.firebase.database.DatabaseReference
+import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
+import android.widget.DatePicker
+import com.google.firebase.database.FirebaseDatabase
+import com.redsystem.agendaonline.Objetos.Nota
+import android.view.MenuInflater
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.firebase.ui.database.FirebaseRecyclerAdapter
+import com.redsystem.agendaonline.ViewHolder.ViewHolder_Nota
+import com.firebase.ui.database.FirebaseRecyclerOptions
+import android.view.ViewGroup
+import android.view.LayoutInflater
+import com.redsystem.agendaonline.Login
+import com.google.android.gms.tasks.OnSuccessListener
+import android.widget.ProgressBar
+import com.redsystem.agendaonline.AgregarNota.Agregar_Nota
+import com.redsystem.agendaonline.ListarNotas.Listar_Notas
+import com.redsystem.agendaonline.NotasArchivadas.Notas_Archivadas
+import com.redsystem.agendaonline.Perfil.Perfil_Usuario
+import com.redsystem.agendaonline.MainActivity
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 
+class Nota {
     //Atributos con los que contará una NOTA
-    String id_nota, uid_usuario, correo_usuario, fecha_hora_actual, titulo, descripcion, fecha_nota, estado;
+    var id_nota: String? = null
+    var uid_usuario: String? = null
+    var correo_usuario: String? = null
+    var fecha_hora_actual: String? = null
+    var titulo: String? = null
+    var descripcion: String? = null
+    var fecha_nota: String? = null
+    var estado: String? = null
 
-    public Nota() {
-
-    }
-
-    public Nota(String id_nota, String uid_usuario, String correo_usuario, String fecha_hora_actual, String titulo, String descripcion, String fecha_nota, String estado) {
-        this.id_nota = id_nota;
-        this.uid_usuario = uid_usuario;
-        this.correo_usuario = correo_usuario;
-        this.fecha_hora_actual = fecha_hora_actual;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.fecha_nota = fecha_nota;
-        this.estado = estado;
-    }
-
-    public String getId_nota() {
-        return id_nota;
-    }
-
-    public void setId_nota(String id_nota) {
-        this.id_nota = id_nota;
-    }
-
-    public String getUid_usuario() {
-        return uid_usuario;
-    }
-
-    public void setUid_usuario(String uid_usuario) {
-        this.uid_usuario = uid_usuario;
-    }
-
-    public String getCorreo_usuario() {
-        return correo_usuario;
-    }
-
-    public void setCorreo_usuario(String correo_usuario) {
-        this.correo_usuario = correo_usuario;
-    }
-
-    public String getFecha_hora_actual() {
-        return fecha_hora_actual;
-    }
-
-    public void setFecha_hora_actual(String fecha_hora_actual) {
-        this.fecha_hora_actual = fecha_hora_actual;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public String getFecha_nota() {
-        return fecha_nota;
-    }
-
-    public void setFecha_nota(String fecha_nota) {
-        this.fecha_nota = fecha_nota;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
+    constructor() {}
+    constructor(
+        id_nota: String?,
+        uid_usuario: String?,
+        correo_usuario: String?,
+        fecha_hora_actual: String?,
+        titulo: String?,
+        descripcion: String?,
+        fecha_nota: String?,
+        estado: String?
+    ) {
+        this.id_nota = id_nota
+        this.uid_usuario = uid_usuario
+        this.correo_usuario = correo_usuario
+        this.fecha_hora_actual = fecha_hora_actual
+        this.titulo = titulo
+        this.descripcion = descripcion
+        this.fecha_nota = fecha_nota
+        this.estado = estado
     }
 }
