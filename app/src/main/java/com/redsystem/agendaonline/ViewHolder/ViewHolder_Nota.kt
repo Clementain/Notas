@@ -1,79 +1,44 @@
 package com.redsystem.agendaonline.ViewHolder
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import com.redsystem.agendaonline.R
-import android.widget.EditText
-import android.widget.TextView
-import android.app.ProgressDialog
-import com.google.firebase.auth.FirebaseAuth
-import android.content.Intent
-import com.redsystem.agendaonline.Registro
-import android.widget.Toast
-import android.text.TextUtils
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseUser
-import com.redsystem.agendaonline.MenuPrincipal
-import com.google.android.gms.tasks.OnFailureListener
-import androidx.recyclerview.widget.RecyclerView
-import com.redsystem.agendaonline.ViewHolder.ViewHolder_Nota.ClickListener
-import android.view.View.OnLongClickListener
-import com.google.firebase.database.DatabaseReference
-import android.app.DatePickerDialog
-import android.app.DatePickerDialog.OnDateSetListener
 import android.content.Context
-import android.widget.DatePicker
-import com.google.firebase.database.FirebaseDatabase
-import com.redsystem.agendaonline.Objetos.Nota
-import android.view.MenuInflater
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.firebase.ui.database.FirebaseRecyclerAdapter
-import com.redsystem.agendaonline.ViewHolder.ViewHolder_Nota
-import com.firebase.ui.database.FirebaseRecyclerOptions
-import android.view.ViewGroup
-import android.view.LayoutInflater
 import android.view.View
-import com.redsystem.agendaonline.Login
-import com.google.android.gms.tasks.OnSuccessListener
-import android.widget.ProgressBar
-import com.redsystem.agendaonline.AgregarNota.Agregar_Nota
-import com.redsystem.agendaonline.ListarNotas.Listar_Notas
-import com.redsystem.agendaonline.NotasArchivadas.Notas_Archivadas
-import com.redsystem.agendaonline.Perfil.Perfil_Usuario
-import com.redsystem.agendaonline.MainActivity
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.redsystem.agendaonline.R
 
 class ViewHolder_Nota(var mView: View) : RecyclerView.ViewHolder(
     mView
 ) {
-    private var mClickListener: ClickListener? = null
+    private lateinit var mClickListener: ClickListener
 
     interface ClickListener {
         fun onItemClick(view: View?, position: Int) /*SE EJECUTA AL PRESIONAR EN EL ITEM*/
         fun onItemLongClick(
-            view: View?,
-            position: Int
+            view: View?, position: Int
         ) /*SE EJECUTA AL MANTENER PRESIONADO EN EL ITEM*/
     }
 
-    fun setOnClickListener(clickListener: ClickListener?) {
+    fun setOnClickListener(clickListener: ClickListener) {
         mClickListener = clickListener
     }
 
     init {
-        itemView.setOnClickListener { view -> mClickListener!!.onItemClick(view, adapterPosition) }
+        itemView.setOnClickListener { view -> mClickListener.onItemClick(view, adapterPosition) }
         itemView.setOnLongClickListener { view ->
-            mClickListener!!.onItemLongClick(view, adapterPosition)
+            mClickListener.onItemLongClick(view, adapterPosition)
             false
         }
     }
 
     fun SetearDatos(
-        context: Context?, id_nota: String?, uid_usuario: String?, correo_usuario: String?,
-        fecha_hora_registro: String?, titulo: String?, descripcion: String?, fecha_nota: String?,
+        context: Context?,
+        id_nota: String?,
+        uid_usuario: String?,
+        correo_usuario: String?,
+        fecha_hora_registro: String?,
+        titulo: String?,
+        descripcion: String?,
+        fecha_nota: String?,
         estado: String?
     ) {
 
